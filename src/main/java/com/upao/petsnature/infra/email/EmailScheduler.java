@@ -18,7 +18,7 @@ public class EmailScheduler {
     private UsuarioRepository usuarioRepository;
 
     // Se ejecuta cada lunes, miércoles y sabado a las 11:00 AM
-    @Scheduled(cron = "0 0 11 * * SAT,MON,WED")
+    @Scheduled(cron = "0 0 11 * * MON,WED,SAT")
     public void enviarConsejos() {
         List<Usuario> usuarios = usuarioRepository.findAll();
         for (Usuario usuario : usuarios) {

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 public class EmailReminderService {
@@ -23,7 +24,10 @@ public class EmailReminderService {
     public void enviarConsejoAMascotaOwner(String email, Long razaId) {
         List<Consejo> consejos = consejoRepository.findByRazaId(razaId);
         if (!consejos.isEmpty()) {
-            Consejo consejo = consejos.get(0);
+            // Enviar consejos en un ciclo, uno a uno por cada ejecución
+            AtomicInteger index = new AtomicInteger(0);
+            int consejoIndex = index.getAndUpdate(i -> (i + 1) % consejos.size());
+            Consejo consejo = consejos.get(consejoIndex);
 
             MimeMessage mensaje = mailSender.createMimeMessage();
 
@@ -40,7 +44,6 @@ public class EmailReminderService {
                 e.printStackTrace();
             }
         }
-
     }
 }
 

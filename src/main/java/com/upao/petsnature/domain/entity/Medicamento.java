@@ -19,6 +19,7 @@ public class Medicamento {
     @Column(name = "nombre_medicamento")
     private String nombre;
     private String descripcion;
+    @Column(name = "tipo", length = 50)
     @Enumerated(EnumType.STRING)
     private TipoMedicamento tipo;
     @Column(name = "fecha_medicamento", columnDefinition = "DATE", nullable = true)
