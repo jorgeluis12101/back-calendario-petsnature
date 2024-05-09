@@ -81,7 +81,7 @@ public class MascotaController {
     }
 
 
-    @GetMapping("/detalles")
+    @GetMapping("/listar")
     public ResponseEntity<List<DatosDetallesMascota>> obtenerDetallesMascotasPorUsuario() {
         List<Mascota> mascotas = mascotaService.obtenerMascotasPorUsuario();
         List<DatosDetallesMascota> detallesMascotas = mascotas.stream()
