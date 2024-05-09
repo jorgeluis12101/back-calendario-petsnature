@@ -9,10 +9,12 @@ public record DatosDetallesMascota(
     float peso,
     String alimentacion,
     String color,
-    String detalles
+    String detalles,
+    String raza
 ) {
     public DatosDetallesMascota(Mascota mascota){
         this(mascota.getNombre(), mascota.getFoto(), mascota.getFecha().toString(),
-                mascota.getPeso(), mascota.getAlimentacion(), mascota.getColor(), mascota.getDetalles());
+                mascota.getPeso(), mascota.getAlimentacion(), mascota.getColor(), mascota.getDetalles(),
+                mascota.getRaza().getNombre());
     }
 }
