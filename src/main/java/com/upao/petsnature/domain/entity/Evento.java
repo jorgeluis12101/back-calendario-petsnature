@@ -19,14 +19,15 @@ public class Evento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "fecha_evento", columnDefinition = "DATE")
-    @CreationTimestamp
     private LocalDate fecha;
     private String veterinaria;
     private String descripcion;
     private String costo;
     @Enumerated(EnumType.STRING)
     private TipoEvento tipo;
-    private String archivo; // word, pdf, excel, jpg, png
+    @Lob // Asegúrate de que el campo sea lo suficientemente grande
+    @Column(length = 10485760) // 10MB, puedes ajustar este valor
+    private String archivo; // base64 encoded string
     private LocalDate modificadoFecha;
     @Column(nullable = false, name = "estado")
     private boolean enabled = true;

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public record DatosRegistroEvento(
+        LocalDate fecha,
         String veterinaria,
         String descripcion,
         String costo,
